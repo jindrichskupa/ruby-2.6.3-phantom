@@ -1,13 +1,14 @@
-FROM ruby:2.6.3
+FROM ruby:2.6.3-stretch
 
 MAINTAINER Jindrich Skupa <jindrich.skupa@gmail.com>
 
 RUN \
   apt-get update && \
   apt-get install -y \
-  wget gnupg apt-transport-https && \
-  echo "deb https://deb.nodesource.com/node_12.x buster main" > /etc/apt/sources.list.d/nodesource.list && \
-  echo "deb-src https://deb.nodesource.com/node_12.x buster main" >> /etc/apt/sources.list.d/nodesource.list && \
+  wget gnupg apt-transport-https \
+  libssl1.1 && \
+  echo "deb https://deb.nodesource.com/node_12.x stretch main" > /etc/apt/sources.list.d/nodesource.list && \
+  echo "deb-src https://deb.nodesource.com/node_12.x stretch main" >> /etc/apt/sources.list.d/nodesource.list && \
   wget -qO- https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
   apt-get update && \
   apt-get install -y nodejs && \
